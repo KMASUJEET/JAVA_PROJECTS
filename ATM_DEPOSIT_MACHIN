@@ -1,0 +1,119 @@
+package AtmDepositMachin;
+import java.util.Random;
+import java.util.Scanner;
+class Accounts{
+	
+	private String AccountHolderName;
+	private String AccountType;
+	private String AccountNumber;
+	private int AccountBalance;
+	
+	public String getAccountHolderName() {
+		return AccountHolderName;
+	}
+	public void setAccountHolderName(String accountHolderName) {
+		AccountHolderName = accountHolderName;
+	}
+	public String getAccountType() {
+		return AccountType;
+	}
+	public void setAccountType(String accountType) {
+		AccountType = accountType;
+	}
+	public String getAccountNumber() {
+		return AccountNumber;
+	}
+	public void setAccountNumber(String accountNumber) {
+		AccountNumber = accountNumber;
+	}
+	public int getAccountBalance() {
+		return AccountBalance;
+	}
+	public void setAccountBalance(int accountBalance) {
+		AccountBalance = accountBalance;
+	}
+	
+ }
+class Clear{
+    public static void clear() {
+    	
+    System.out.println("! Exit Sucessfully thanks !");       
+    	}
+    }
+class Transaction{
+	
+	public void Deposite( Accounts  Accounts, int balance ) {
+	int	TotalBalance=  Accounts.getAccountBalance()+balance;
+	Accounts.setAccountBalance(TotalBalance);
+	 
+	 System.out.println("____________________________________________________");
+	 System.out.println("INR "+balance+" Deposit Sucessfully...");
+	 System.out.println("____________________________________________________");
+	 System.out.println("Account Details...");
+	 System.out.println("Account Holder Name   :"+Accounts.getAccountHolderName());
+	 System.out.println("Account No            :"+Accounts.getAccountNumber());
+	 System.out.println("Account Type          :"+Accounts.getAccountType());
+	 
+	 Random random= new Random();
+	 System.out.println("Account transaction No:"+"TRxn"+random.nextInt(999999));
+	 System.out.println("Account Balance       :"+"INR"+" "+(TotalBalance-balance));
+	 System.out.println("Total Account Balance :"+"INR"+" "+TotalBalance);
+	 System.out.println("IFSC CODE             :SBIN0002912");
+	 System.out.println("____________________________________________________");
+	 System.out.print("For Exit  Enter         : 0");
+	 
+	 Scanner scanner = new Scanner (System.in);
+	 int closed = scanner.nextInt();
+	 if(closed==0) {
+		Clear.clear();
+	 } else {
+		System.out.println("Waiting...while exit auctomatically...");
+	 }
+   }	
+}
+public class TEST {
+public static void main(String[] args) {
+	
+	Accounts Accounts = new Accounts();	
+	Accounts.setAccountNumber("31516062166");
+	Accounts.setAccountHolderName("SUJEET KUMAR");
+	
+	Random random= new Random();
+	Accounts.setAccountBalance(random.nextInt(9999));
+	
+	Accounts.setAccountType("CURRENT");
+	System.out.println("Welcome to CASH Deposit ATMachine");
+	System.out.println("_________________________________");
+	System.out.print("Enter Your Account Number to Verify Your Account:");
+	
+	Scanner scanner = new Scanner (System.in);
+	String EnteredAccountNo = scanner.next().trim();
+	String RealAccountNo= Accounts.getAccountNumber();
+	
+	Transaction Transaction=new Transaction();
+	
+	System.out.print("Enter Amount TO be Deposited  INR :");
+	int EnteredDepositAmount = scanner.nextInt();
+	int DepositAmount=0;
+	if (EnteredDepositAmount <=50000 && EnteredDepositAmount %100==0) {
+		 DepositAmount+=EnteredDepositAmount ;
+	}else {
+		     System.out.println("_________________________________");
+	         System.out.println("Check Account  Number :"+
+			 " \n     Deposit Upto INR 50,000 & multiple of INR 100");
+	return;
+	}
+	
+	boolean CompairedAccountNo=EnteredAccountNo.equals(RealAccountNo);
+	if( CompairedAccountNo==true) {
+		Transaction.Deposite(Accounts, DepositAmount);
+	}else {
+		System.out.println("! You Entered Invalid Account  Detail !");
+	}   
+  }
+}
+
+
+
+
+
