@@ -1,0 +1,83 @@
+package NUMBER_CHECK;
+
+import java.util.*;
+	class Test1 {	
+	    static void NumberCheck1() {
+	        try (Scanner scanner = new Scanner(System.in)) {  
+	            System.out.println("          ______Check Number_______");
+	            System.out.print("Enter Number            : ");
+	            
+	            long enterNumber = scanner.nextLong(); 
+	            
+	            long reverse = 0, originalNumber = enterNumber, armstrong = 0;
+	            
+	            System.out.print("Result:\n<1> You Entered Number        : " + originalNumber);
+	            System.out.println();
+	            System.out.print("<2> Extrected Digit           : ");
+
+	            long temp = enterNumber;
+	            while (temp != 0) {
+	                long digit = temp % 10;
+	                reverse = 10 * reverse + digit;
+	                temp = temp / 10;
+	                System.out.print(digit);
+	                
+	                armstrong += (digit * digit * digit);
+	            }
+	            
+	            System.out.println("\n<3> Reverse Number            : " + reverse);
+	            if(originalNumber<0) {
+	        		System.out.println("<4> Number is Negative Integer: "+ originalNumber); 
+	        	 }else {
+	        		 System.out.println("<4> Number is Positive Integer: "+ originalNumber); 	 
+	        	 }
+	            // Palindrome Check
+	            if (originalNumber == reverse) {
+	                System.out.println("<5> Number is Palindrome      : " + originalNumber);
+	            } else {
+	                System.out.println("<5> Number is 'Not' Palindrome: " + originalNumber);
+	            }
+
+	            // Armstrong Check
+	            if (armstrong == originalNumber) {
+	                System.out.println("<6> Number is Armstrong       : " + originalNumber);
+	            } else {
+	                System.out.println("<6> Number is 'Not' Armstrong : " + originalNumber);
+	            }
+
+	            // Even or Odd Check
+	            if (originalNumber % 2 == 0) {
+	                System.out.println("<7> Number is Even            : " + originalNumber);
+	            } else {
+	                System.out.println("<7> Number is Odd             : " + originalNumber);
+	            }
+
+	            // Prime Number Check
+	            if (isPrime(originalNumber)) {
+	                System.out.println("<8> Number is Prime           : " + originalNumber);
+	            } else {
+	                System.out.println("<8> Number is 'Not' Prime     : " + originalNumber);
+	            }
+	        } catch (Exception e) {
+	            System.out.println("<9> Invalid Input! Please enter a valid number.\n  "+e);
+	        }
+	    }    
+	    static boolean isPrime(long num) {
+	        if (num < 2) return false;
+	        if (num == 2 || num == 3) return true;
+	        if (num % 2 == 0) return false;
+	        for (long i = 3; i * i <= num; i += 2) {
+	            if (num % i == 0) return false;
+	        }
+	        return true;
+	    }
+	}
+
+	public class Check {
+	    public static void main(String[] args) {	
+	        Test1.NumberCheck1(); 
+	    }
+	}
+
+
+
