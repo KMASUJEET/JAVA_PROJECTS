@@ -1,9 +1,10 @@
-package ATM_PROJECT;
-import java.util.Scanner;
+ package ATM_PROJECT;
+ import java.util.Scanner;
  public class CallingClass extends ATMProject  {
-	static String EnterNumber;
+ static String EnterNumber;
     public static void main(String[] args) { 	 
-    Scanner scanner     =  new Scanner(System.in);
+    Scanner scanner =null;
+	    scanner =new Scanner(System.in);
     CallingClass Class  = new CallingClass(); 
     System.out.print("Enter Registered Mobile Number:>"); 
     String enterNumber=scanner.next().trim();
